@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET = 勞校網瀏覽器
 QT += webenginewidgets
 
-VERSION = 2.1
+VERSION = 2.2
 DEFINES += APP_VERSION=$$VERSION
 
 HEADERS += \
