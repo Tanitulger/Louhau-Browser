@@ -76,6 +76,8 @@ int main(int argc, char **argv)
     proxy.setPassword("");
     QNetworkProxy::setApplicationProxy(proxy);
 
+
+
     QCoreApplication::setOrganizationName("はるもと");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
@@ -94,6 +96,5 @@ int main(int argc, char **argv)
     Browser browser;
     BrowserWindow *window = browser.createWindow();
     window->tabWidget()->setUrl(url);
-
     return app.exec();
 }

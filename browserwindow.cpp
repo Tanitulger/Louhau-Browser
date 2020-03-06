@@ -358,7 +358,7 @@ QToolBar *BrowserWindow::createToolBar()
     m_historyBackAction->setShortcuts(backShortcuts);
     m_historyBackAction->setIconVisibleInMenu(false);
     m_historyBackAction->setIcon(QIcon(QStringLiteral(":go-previous.png")));
-    m_historyBackAction->setToolTip(tr("Go back in history"));
+    m_historyBackAction->setToolTip(tr("返回"));
     connect(m_historyBackAction, &QAction::triggered, [this]() {
         m_tabWidget->triggerWebPageAction(QWebEnginePage::Back);
     });
@@ -381,7 +381,7 @@ QToolBar *BrowserWindow::createToolBar()
     m_historyForwardAction->setShortcuts(fwdShortcuts);
     m_historyForwardAction->setIconVisibleInMenu(false);
     m_historyForwardAction->setIcon(QIcon(QStringLiteral(":go-next.png")));
-    m_historyForwardAction->setToolTip(tr("Go forward in history"));
+    m_historyForwardAction->setToolTip(tr("前進"));
     connect(m_historyForwardAction, &QAction::triggered, [this]() {
         m_tabWidget->triggerWebPageAction(QWebEnginePage::Forward);
     });
@@ -401,7 +401,7 @@ QToolBar *BrowserWindow::createToolBar()
 
     auto downloadsAction = new QAction(this);
     downloadsAction->setIcon(QIcon(QStringLiteral(":go-bottom.png")));
-    downloadsAction->setToolTip(tr("Show downloads"));
+    downloadsAction->setToolTip(tr("顯示下載項目"));
     navigationBar->addAction(downloadsAction);
     connect(downloadsAction, &QAction::triggered, [this]() {
         m_browser->downloadManagerWidget().show();

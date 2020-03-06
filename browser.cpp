@@ -76,6 +76,7 @@ BrowserWindow *Browser::createWindow(bool offTheRecord)
         m_windows.removeOne(mainWindow);
     });
     mainWindow->show();
+
     return mainWindow;
 }
 
