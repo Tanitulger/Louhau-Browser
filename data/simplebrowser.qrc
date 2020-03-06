@@ -7,6 +7,7 @@
         <file alias="go-bottom.png">3rdparty/go-bottom.png</file>
         <file alias="go-next.png">3rdparty/go-next.png</file>
         <file alias="go-previous.png">3rdparty/go-previous.png</file>
+        <file alias="go-previous-small.png">3rdparty/go-previous-small.png</file>
         <file alias="process-stop.png">3rdparty/process-stop.png</file>
         <file alias="text-html.png">3rdparty/text-html.png</file>
         <file alias="view-refresh.png">3rdparty/view-refresh.png</file>

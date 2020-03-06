@@ -71,6 +71,8 @@
 #endif
 #include <QWebEngineProfile>
 #include <QMessageBox>
+#include <QFile>
+#include <data/3rdparty/QSimpleUpdater/include/QSimpleUpdater.h>
 
 BrowserWindow::BrowserWindow(Browser *browser, QWebEngineProfile *profile, bool forDevTools)
     : m_browser(browser)
@@ -113,6 +115,20 @@ BrowserWindow::BrowserWindow(Browser *browser, QWebEngineProfile *profile, bool 
 
         layout->addWidget(m_progressBar);
     }
+
+    QFile f(":qdarkstyle/style.qss");
+
+    if (!f.exists())   {
+        printf("Unable to set stylesheet, file not found\n");
+    }
+    else   {
+        f.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&f);
+        qApp->setStyleSheet(ts.readAll());
+    }
+
+
+
 
     layout->addWidget(m_tabWidget);
     centralWidget->setLayout(layout);
@@ -357,7 +373,23 @@ QToolBar *BrowserWindow::createToolBar()
     backShortcuts.append(QKeySequence(Qt::Key_Back));
     m_historyBackAction->setShortcuts(backShortcuts);
     m_historyBackAction->setIconVisibleInMenu(false);
+#ifdef WIN32
     m_historyBackAction->setIcon(QIcon(QStringLiteral(":go-previous.png")));
+    navigationBar->setStyleSheet(
+                "*{width:15%; height:15%;}"
+                "* > * > *{margin:2px;}"
+                ""
+                );
+#else
+    m_historyBackAction->setIcon(QIcon(QStringLiteral(":go-previous-small.png")));
+    navigationBar->setStyleSheet("width: 20%; height: 20%;margin: 2px;");
+    navigationBar->setStyleSheet(
+                "*{width: 20%; height: 20%;}"
+                "* > * > *{margin:2px;}"
+                ""
+                );
+#endif
+
     m_historyBackAction->setToolTip(tr("返回"));
     connect(m_historyBackAction, &QAction::triggered, [this]() {
         m_tabWidget->triggerWebPageAction(QWebEnginePage::Back);

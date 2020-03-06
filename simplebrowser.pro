@@ -23,6 +23,7 @@ SOURCES += \
     webpopupwindow.cpp \
     webview.cpp
 
+RESOURCES += qdarkstyle/style.qrc
 
 FORMS += \
     certificateerrordialog.ui \
@@ -46,4 +47,5 @@ DISTFILES += \
     data/icon-2.ico \
     download.png \
     icon.icns \
-    icon.ico
+    icon.ico \
+    update.json
