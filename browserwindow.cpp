@@ -136,8 +136,24 @@ BrowserWindow::BrowserWindow(Browser *browser, QWebEngineProfile *profile, bool 
     QEventLoop event;
     connect(response,SIGNAL(finished()),&event,SLOT(quit()));
     event.exec();
-    QString html = response->readAll(); // Source should be stored here
+    QString html = response->readAll().constData(); // Source should be stored here
+
+    html.replace("\n","");
+    qDebug()<<"you should update!"<<" "<<html.toDouble()<<' '<<APP_VERSION;
+    double remote = html.toDouble();
+    double local = APP_VERSION;
+    if(local < remote)
+    {
+        QMessageBox message;
+        message.setText("發現新版本！請到 Tanitulger.github.io 下載最新版本");
+        message.exec();
+    }else{
+        qDebug()<<"Latest!";
+    }
+
     qDebug()<<html;
+
+
 
     layout->addWidget(m_tabWidget);
     centralWidget->setLayout(layout);
@@ -480,7 +496,7 @@ void BrowserWindow::handleWebViewTitleChanged(const QString &title)
     if (title.isEmpty())
         setWindowTitle(suffix);
     else
-        setWindowTitle(title + " - " + suffix);
+        setWindowTitle(title + " - " + suffix + " - " + QString::fromStdString(std::to_string(APP_VERSION)) + ".0");
 }
 
 void BrowserWindow::handleNewWindowTriggered()
