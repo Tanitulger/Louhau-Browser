@@ -73,6 +73,9 @@
 #include <QMessageBox>
 #include <QFile>
 #include <data/3rdparty/QSimpleUpdater/include/QSimpleUpdater.h>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QTextCodec>
 
 BrowserWindow::BrowserWindow(Browser *browser, QWebEngineProfile *profile, bool forDevTools)
     : m_browser(browser)
@@ -127,8 +130,14 @@ BrowserWindow::BrowserWindow(Browser *browser, QWebEngineProfile *profile, bool 
         qApp->setStyleSheet(ts.readAll());
     }
 
-
-
+    QString url = "https://raw.githubusercontent.com/Tanitulger/Louhau-Browser/master/update.json?raw=true";
+    QNetworkAccessManager manager;
+    QNetworkReply *response = manager.get(QNetworkRequest(QUrl(url)));
+    QEventLoop event;
+    connect(response,SIGNAL(finished()),&event,SLOT(quit()));
+    event.exec();
+    QString html = response->readAll(); // Source should be stored here
+    qDebug()<<html;
 
     layout->addWidget(m_tabWidget);
     centralWidget->setLayout(layout);
