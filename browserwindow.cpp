@@ -496,7 +496,31 @@ void BrowserWindow::handleWebViewTitleChanged(const QString &title)
     if (title.isEmpty())
         setWindowTitle(suffix);
     else
-        setWindowTitle(title + " - " + suffix + " - " + QString::fromStdString(std::to_string(APP_VERSION)) + ".0");
+        using namespace std;
+        std::string c_ver = std::to_string(APP_VERSION);
+        std::string correct = "";
+        for(int i=0;i<c_ver.length();i++)
+        {
+            if(c_ver[i] != '0')
+            {
+                correct += c_ver[i];
+            }
+        }
+        bool hasDot = false;
+        for(int i=0;i<correct.length();i++)
+        {
+            if(correct[i] == '.')
+            {
+                hasDot = true;
+                break;
+            }
+        }
+        if(hasDot)
+        {
+            setWindowTitle(title + " - " + suffix + " - " + QString::fromStdString(correct));
+        }else{
+            setWindowTitle(title + " - " + suffix + " - " + QString::fromStdString(correct) + ".0");
+        }
 }
 
 void BrowserWindow::handleNewWindowTriggered()

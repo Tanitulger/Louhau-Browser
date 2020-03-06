@@ -79,7 +79,7 @@ signals:
 
 private:
     void createWebActionTrigger(QWebEnginePage *page, QWebEnginePage::WebAction);
-
+    //void setButtonIcon(int frame);
 private:
     int m_loadProgress;
 };

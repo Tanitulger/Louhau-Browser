@@ -63,11 +63,15 @@ DownloadManagerWidget::DownloadManagerWidget(QWidget *parent)
     , m_numDownloads(0)
 {
     setupUi(this);
+
 }
 
 void DownloadManagerWidget::downloadRequested(QWebEngineDownloadItem *download)
 {
     Q_ASSERT(download && download->state() == QWebEngineDownloadItem::DownloadRequested);
+    m_zeroItemsLabel->setStyleSheet("color:white;border:0px;");
+
+
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
     QString path = QFileDialog::getSaveFileName(this, tr("另存新檔"), QDir(download->downloadDirectory()).filePath(download->downloadFileName()));
@@ -93,8 +97,15 @@ void DownloadManagerWidget::add(DownloadWidget *downloadWidget)
 {
     connect(downloadWidget, &DownloadWidget::removeClicked, this, &DownloadManagerWidget::remove);
     m_itemsLayout->insertWidget(0, downloadWidget, 0, Qt::AlignTop);
+#ifdef WIN32
+
+#else
+    //downloadWidget->setStyleSheet("width: 100%;");
+    //m_items->setStyleSheet("background: rgba(20,26,34,0); width: 100%;");
+#endif
     if (m_numDownloads++ == 0)
         m_zeroItemsLabel->hide();
+    m_items->setStyleSheet("background: rgba(20,26,34,0)");
 }
 
 void DownloadManagerWidget::remove(DownloadWidget *downloadWidget)
@@ -103,4 +114,5 @@ void DownloadManagerWidget::remove(DownloadWidget *downloadWidget)
     downloadWidget->deleteLater();
     if (--m_numDownloads == 0)
         m_zeroItemsLabel->show();
+
 }

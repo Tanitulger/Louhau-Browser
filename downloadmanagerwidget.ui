@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Downloads</string>
+   <string>下載項目</string>
   </property>
   <property name="styleSheet">
    <string notr="true">#DownloadManagerWidget {
@@ -64,7 +64,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#m_items {background: palette(mid)}</string>
+       <string notr="true"/>
       </property>
       <layout class="QVBoxLayout" name="m_itemsLayout">
        <property name="spacing">
@@ -84,20 +84,41 @@
        </property>
        <item>
         <widget class="QLabel" name="m_zeroItemsLabel">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
          <property name="styleSheet">
-          <string notr="true">color: palette(shadow)</string>
+          <string notr="true">color: white;background:rgba(35,40,48,0);border:0;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="midLineWidth">
+          <number>0</number>
          </property>
          <property name="text">
           <string>沒有任何下載任務</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
+         </property>
+         <property name="margin">
+          <number>0</number>
          </property>
         </widget>
        </item>

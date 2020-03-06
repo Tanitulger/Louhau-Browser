@@ -59,6 +59,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QTimer>
+#include <QMovie>
 
 WebView::WebView(QWidget *parent)
     : QWebEngineView(parent)
@@ -141,13 +142,16 @@ QIcon WebView::favIcon() const
         static QIcon errorIcon(QStringLiteral(":dialog-error.png"));
         return errorIcon;
     } else if (m_loadProgress < 100) {
-        static QIcon loadingIcon(QStringLiteral(":view-refresh.png"));
+        static QIcon loadingIcon(QStringLiteral(":loading.gif"));
         return loadingIcon;
     } else {
         static QIcon defaultIcon(QStringLiteral(":text-html.png"));
         return defaultIcon;
     }
 }
+
+
+
 
 QWebEngineView *WebView::createWindow(QWebEnginePage::WebWindowType type)
 {

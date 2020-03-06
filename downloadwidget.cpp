@@ -62,12 +62,20 @@ DownloadWidget::DownloadWidget(QWebEngineDownloadItem *download, QWidget *parent
     m_timeAdded.start();
     setupUi(this);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+
+#ifdef WIN32
+    this->setStyleSheet("background: rgb(80,95,105); border-radius: 10px;");
+#else
+    this->setStyleSheet("background: rgb(80,95,105); border-radius: 10px;width: 100%;");
+#endif
     m_dstName->setText(m_download->downloadFileName());
+    m_dstName->setStyleSheet("border-top-left-radius: 2px;border-top-right-radius: 2px;border-bottom-left-radius: 2px;border-bottom-right-radius: 2px;");
+
 #else
     m_dstName->setText(QFileInfo(m_download->path()).fileName());
 #endif
     m_srcUrl->setText(m_download->url().toDisplayString());
-
+    m_srcUrl->setStyleSheet("border-top-left-radius: 2px;border-top-right-radius: 2px;border-bottom-left-radius: 2px;border-bottom-right-radius: 2px;");
     connect(m_cancelButton, &QPushButton::clicked,
             [this](bool) {
         if (m_download->state() == QWebEngineDownloadItem::DownloadInProgress)
@@ -156,8 +164,9 @@ void DownloadWidget::updateWidget()
         m_cancelButton->setIcon(cancelIcon);
         m_cancelButton->setToolTip(tr("停止下載"));
     } else {
-        static QIcon removeIcon(QStringLiteral(":edit-clear.png"));
+        static QIcon removeIcon(QStringLiteral(":rubbish.png"));
         m_cancelButton->setIcon(removeIcon);
         m_cancelButton->setToolTip(tr("從列表中移除"));
+        m_cancelButton->setStyleSheet(":active{background: rgba(1,1,1,0)}");
     }
 }

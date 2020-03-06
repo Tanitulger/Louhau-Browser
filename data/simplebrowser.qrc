@@ -11,5 +11,7 @@
         <file alias="process-stop.png">3rdparty/process-stop.png</file>
         <file alias="text-html.png">3rdparty/text-html.png</file>
         <file alias="view-refresh.png">3rdparty/view-refresh.png</file>
+        <file alias="rubbish.png">3rdparty/rubbish.png</file>
+<file alias="loading.gif">3rdparty/loading.gif</file>
     </qresource>
-</RCC>
+    </RCC>
