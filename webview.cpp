@@ -185,6 +185,30 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
      auto inspectElement = std::find(actions.cbegin(), actions.cend(), page()->action(QWebEnginePage::InspectElement));
      if (inspectElement == actions.cend()) {
         auto viewSource = std::find(actions.cbegin(), actions.cend(), page()->action(QWebEnginePage::ViewSource));
+        page()->action(QWebEnginePage::ViewSource)->setText("查看原始碼");
+        page()->action(QWebEnginePage::ViewSource)->setVisible(false);
+        page()->action(QWebEnginePage::Copy)->setText("複製");
+        page()->action(QWebEnginePage::Back)->setText("返回");
+        page()->action(QWebEnginePage::Back)->setIcon(QIcon(QStringLiteral(":go-previous-small.png")));
+        page()->action(QWebEnginePage::Forward)->setText("前進");
+        page()->action(QWebEnginePage::Forward)->setIcon(QIcon(QStringLiteral(":go-next.png")));
+        page()->action(QWebEnginePage::Reload)->setIcon(QIcon(QStringLiteral(":view-refresh.png")));
+        page()->action(QWebEnginePage::Reload)->setText("重新載入");
+        page()->action(QWebEnginePage::SavePage)->setVisible(false);
+        page()->action(QWebEnginePage::OpenLinkInNewTab)->setText("在新標籤頁打開");
+        page()->action(QWebEnginePage::OpenLinkInNewWindow)->setText("在新窗口打開");
+        page()->action(QWebEnginePage::CopyLinkToClipboard)->setText("複製連結");
+        page()->action(QWebEnginePage::DownloadLinkToDisk)->setText("儲存連結");
+        page()->action(QWebEnginePage::CopyImageToClipboard)->setText("複製圖片");
+        page()->action(QWebEnginePage::CopyImageUrlToClipboard)->setText("複製圖片連結");
+        page()->action(QWebEnginePage::DownloadImageToDisk)->setText("儲存圖片");
+        page()->action(QWebEnginePage::Undo)->setText("復原");
+        page()->action(QWebEnginePage::Redo)->setText("重做");
+        page()->action(QWebEnginePage::Cut)->setText("剪切");
+        page()->action(QWebEnginePage::Paste)->setText("貼上");
+        page()->action(QWebEnginePage::PasteAndMatchStyle)->setText("以相同格式貼上");
+        page()->action(QWebEnginePage::SelectAll)->setText("全選");
+        //page()->action(QWebEnginePage::Copy)->setIconVisibleInMenu(false);
        if (viewSource == actions.cend())
            //(*viewSource)->setText(tr("查看原始碼"));//SelfCreated
             menu->addSeparator();

@@ -70,13 +70,14 @@ WebPopupWindow::WebPopupWindow(QWebEngineProfile *profile)
     setLayout(layout);
     layout->addWidget(m_urlLineEdit);
     layout->addWidget(m_view);
-
+//m_view->setStyleSheet("width: 400px; height: 400px;");
     m_view->setPage(new WebPage(profile, m_view));
     m_view->setFocus();
-
+    //this->setStyleSheet("width: 400px; height: 400px;");
+//m_view->setStyleSheet("width: 400px; height: 400px;");
     m_urlLineEdit->setReadOnly(true);
     m_urlLineEdit->addAction(m_favAction, QLineEdit::LeadingPosition);
-
+//m_view->setStyleSheet("width: 400px; height: 400px;");
     connect(m_view, &WebView::titleChanged, this, &QWidget::setWindowTitle);
     connect(m_view, &WebView::urlChanged, [this](const QUrl &url) {
         m_urlLineEdit->setText(url.toDisplayString());
@@ -97,4 +98,6 @@ void WebPopupWindow::handleGeometryChangeRequested(const QRect &newGeometry)
         setGeometry(newGeometry.marginsRemoved(window->frameMargins()));
     show();
     m_view->setFocus();
+    this->setFixedHeight(500);
+    this->setFixedWidth(500);
 }
