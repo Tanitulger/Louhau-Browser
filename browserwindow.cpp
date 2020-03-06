@@ -221,6 +221,7 @@ QMenu *BrowserWindow::createFileMenu(TabWidget *tabWidget)
     });
     fileMenu->addAction(closeTabAction);
 
+
     QAction *closeAction = new QAction(tr("結束 勞校網瀏覽器"),this);
     closeAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Q));
     connect(closeAction, &QAction::triggered, this, &QWidget::close);
@@ -454,6 +455,7 @@ QToolBar *BrowserWindow::createToolBar()
     m_favAction = new QAction(this);
     m_urlLineEdit->addAction(m_favAction, QLineEdit::LeadingPosition);
     m_urlLineEdit->setClearButtonEnabled(true);
+
     navigationBar->addWidget(m_urlLineEdit);
 
     auto downloadsAction = new QAction(this);

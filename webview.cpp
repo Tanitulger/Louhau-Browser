@@ -208,6 +208,8 @@ void WebView::contextMenuEvent(QContextMenuEvent *event)
         page()->action(QWebEnginePage::Paste)->setText("貼上");
         page()->action(QWebEnginePage::PasteAndMatchStyle)->setText("以相同格式貼上");
         page()->action(QWebEnginePage::SelectAll)->setText("全選");
+        page()->action(QWebEnginePage::Unselect)->setText("全不選");
+        //page()->action(QWb)
         //page()->action(QWebEnginePage::Copy)->setIconVisibleInMenu(false);
        if (viewSource == actions.cend())
            //(*viewSource)->setText(tr("查看原始碼"));//SelfCreated

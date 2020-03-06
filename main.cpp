@@ -97,6 +97,6 @@ int main(int argc, char **argv)
     window->tabWidget()->setUrl(url);
     QFont font("Consolas");
     font.setStyleHint(QFont::Monospace);
-    QApplication::setFont(font);
+    //QApplication::setFont(font);
     return app.exec();
 }
